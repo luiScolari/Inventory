@@ -1,6 +1,5 @@
 import {
   ExpenseByCategorySummary,
-  ExpenseSummary,
   useGetDashboardMetricsQuery,
 } from "@/state/api";
 import { TrendingUp } from "lucide-react";
