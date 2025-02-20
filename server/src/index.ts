@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-const port = process.env.PORT || 3001;
+const port = Number(process.env.PORT) || 3001;
 
 app.use("/dashboard", dashBoardRoutes);
 app.use("/products", productRoutes);
@@ -31,6 +31,6 @@ app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
 });
