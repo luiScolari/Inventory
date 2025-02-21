@@ -22,7 +22,7 @@ app.use((0, morgan_1.default)("common"));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use((0, cors_1.default)());
-const port = process.env.PORT || 3001;
+const port = Number(process.env.PORT) || 3001;
 app.use("/dashboard", dashboardRoutes_1.default);
 app.use("/products", productRoutes_1.default);
 app.use("/users", userRoutes_1.default);
@@ -30,6 +30,6 @@ app.use("/expenses", expenseRoutes_1.default);
 app.get("/ping", (req, res) => {
     res.send("pong");
 });
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
 });
