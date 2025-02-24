@@ -22,6 +22,7 @@ interface SidebarLinkProps {
   icon: LucideIcon;
   label: string;
   isCollapsed: boolean;
+  toggleSideBar(): void;
 }
 
 const SidebarLink = ({
@@ -29,13 +30,19 @@ const SidebarLink = ({
   icon: Icon,
   label,
   isCollapsed,
+  toggleSideBar,
 }: SidebarLinkProps) => {
   const pathname = usePathname();
   const isActive =
     pathname === href || (pathname === "/" && href === "/dashboard");
 
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      onClick={() => {
+        !isCollapsed ? toggleSideBar() : "";
+      }}
+    >
       <div
         className={`cursor-pointer flex items-center ${
           isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
@@ -109,36 +116,42 @@ const Sidebar = () => {
           icon={Layout}
           label="Dashboard"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
         <SidebarLink
           href="/inventory"
           icon={Archive}
           label="Inventory"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
         <SidebarLink
           href="/products"
           icon={Clipboard}
           label="Products"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
         <SidebarLink
           href="/users"
           icon={User}
           label="Users"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
         <SidebarLink
           href="/settings"
           icon={SlidersHorizontal}
           label="Settings"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
         <SidebarLink
           href="/expenses"
           icon={CircleDollarSign}
           label="Expenses"
           isCollapsed={isSidebarCollapsed}
+          toggleSideBar={toggleSidebar}
         />
       </div>
 
