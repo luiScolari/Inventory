@@ -26,6 +26,7 @@ const columns: GridColDef[] = [
     headerName: "Stock Quantity",
     width: 150,
     type: "number",
+    valueGetter: (value, row) => (row.stockQuantity.toLocaleString('pt-BR'))
   },
 ];
 
