@@ -2,6 +2,25 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { v4 } from "uuid";
 import Header from "@/app/(components)/Header";
 
+interface IState {
+  name: string;
+  price: number;
+  stockQuantity: number;
+  rating: number;
+}
+
+interface IAction {
+  type: string;
+  value?: string;
+}
+
+const initialState: IState = {
+  name: "",
+  price: 0,
+  stockQuantity: 0,
+  rating: 0,
+};
+
 type ProductFormData = {
   name: string;
   price: number;
@@ -43,13 +62,31 @@ const CreateProductModal = ({
     e.preventDefault();
     onCreate(formData);
     onClose();
+    setFormData({
+      productId: v4(),
+      name: "",
+      price: 0,
+      stockQuantity: 0,
+      rating: 0,
+    })
   };
+
+  const handleCancel = () => {
+    onClose();
+    setFormData({
+      productId: v4(),
+      name: "",
+      price: 0,
+      stockQuantity: 0,
+      rating: 0,
+    })
+  }
 
   if (!isOpen) return null;
 
   const labelCssStyles = "block text-sm font-medium text-gray-700";
   const inputCssStyles =
-    "block w-full mb-2 p-2 border-gray-500 border-2 rounded-md";
+    "remove-arrow block w-full mb-2 p-2 border-gray-500 border-2 rounded-md";
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20">
@@ -80,6 +117,7 @@ const CreateProductModal = ({
             onChange={handleChange}
             value={formData.price}
             className={inputCssStyles}
+            min="0"
             required
           />
 
@@ -93,6 +131,7 @@ const CreateProductModal = ({
             onChange={handleChange}
             value={formData.stockQuantity}
             className={inputCssStyles}
+            min="0"
             required
           />
 
@@ -106,6 +145,7 @@ const CreateProductModal = ({
             onChange={handleChange}
             value={formData.rating}
             className={inputCssStyles}
+            min="0"
             required
           />
 
@@ -116,7 +156,7 @@ const CreateProductModal = ({
             Create
           </button>
           <button
-            onClick={onClose}
+            onClick={handleCancel}
             type="button"
             className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700"
           >
