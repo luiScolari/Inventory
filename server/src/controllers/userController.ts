@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
 
-export const getUsers = async (req: Request, res: Response): Promise<void> => {
+export const getUsers = async (req: Request, res: Response): Promise<void> => { // teste
   try {
     const users = await prisma.users.findMany();
     res.json(users);
