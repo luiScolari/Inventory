@@ -35,6 +35,7 @@ const Products = () => {
   }
 
   if (isError || !products) {
+    console.log(products);
     return (
       <div className="text-center text-red-500 py-4">
         Failed to fetch products
@@ -81,7 +82,7 @@ const Products = () => {
             >
               <div className="flex flex-col items-center">
                 <Image
-                  src={`https://s3-inventory-bulmeyol.s3.sa-east-1.amazonaws.com/product${
+                  src={`/assets/product${
                     Math.floor(Math.random() * 3) + 1
                   }.png`}
                   alt={product.name}

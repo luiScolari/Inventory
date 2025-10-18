@@ -87,7 +87,7 @@ const Sidebar = () => {
         }`}
       >
         <Image
-          src="https://s3-inventory-bulmeyol.s3.sa-east-1.amazonaws.com/logo.png"
+          src="/assets/logo.png"
           alt="Logo"
           width={27}
           height={27}
